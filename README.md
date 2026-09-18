@@ -158,3 +158,55 @@ python app.py
 ```bash
 python test_app.py
 ```
+
+---
+## 📸 تصاویر محیط سامانه (Application Screenshots)
+
+### صفحه ورود (Login Page)
+![Login Page](screenshots/Login_Page.png)
+
+### داشبورد اصلی (Dashboard)
+![Dashboard](screenshots/Dashboard.png)
+
+### مدیریت محصولات (Products)
+![Products](screenshots/Products.png)
+
+### افزودن محصول جدید (Add Product)
+![Add Product](screenshots/Add_Product.png)
+
+### ویرایش اطلاعات محصول (Edit Product Info)
+![Edit Product Info](screenshots/Edit%20Product%20Info.png)
+
+### انبارها (Warehouse)
+![Warehouse](screenshots/Warehouse.png)
+
+### افزودن انبار جدید (Add Warehouse)
+![Add Warehouse](screenshots/Add_Warehouse.png)
+
+### ویرایش اطلاعات انبار (Edit Warehouse Info)
+![Edit Warehouse Info](screenshots/Edit_Warehouse_Info.png)
+
+### موجودی انبار (Warehouse Inventory)
+![Warehouse Inventory](screenshots/Warehouse_Inventory.png)
+
+### ثبت ورود و خروج کالا (Stock In and Out)
+![Stock In and Out](screenshots/Stock_In_and_Out.png)
+
+### خودروها و رانندگان (Vehicles and Drivers)
+![Vehicles and Drivers](screenshots/Viehcles_and_Drivers.png)
+
+### افزودن راننده جدید (Add Driver)
+![Add Driver](screenshots/Add_Driver.png)
+
+### ویرایش اطلاعات راننده (Edit Driver)
+![Edit Driver](screenshots/Edit_Driver.png)
+
+### افزودن وسیله نقلیه (Add Vehicle)
+![Add Vehicle](screenshots/Add_Viehcle.png)
+
+### مدیریت مسیرها (Route Management)
+![Route Management](screenshots/Route_Manage.png)
+
+### گزارش‌ها و تحلیل‌ها (Reports and Analytics)
+![Reports and Analytics](screenshots/Reports_and_Analytics.png)
+
