@@ -1,0 +1,39 @@
+@startuml
+skinparam packageStyle rectangle
+skinparam DefaultTextAlignment center
+skinparam ComponentBackgroundColor #F8F9FA
+skinparam ComponentBorderColor #34495E
+skinparam ArrowColor #2C3E50
+
+package "سامانه مدیریت انبار و زنجیره تأمین (Flask Application)" {
+    [رابط کاربری و قالب‌ها\n(HTML5 / Tailwind CSS)] as UI
+    
+    package "لایه کنترلر و منطق کسب‌وکار (Controllers & Routes)" {
+        [ماژول احراز هویت و امنیت (RBAC)] as AuthMod
+        [ماژول مدیریت کالا و انبارها] as ProductMod
+        [ماژول سفارشات خرید و فروش (PO/SO)] as OrderMod
+        [ماژول لجستیک و ارسال] as LogisticsMod
+        [ماژول گزارش‌گیری و ممیزی] as ReportMod
+    }
+    
+    package "لایه دسترسی به داده (Data Access Layer)" {
+        [مدل‌های پایگاه داده\n(Flask-SQLAlchemy ORM)] as ORM
+    }
+}
+
+database "پایگاه داده رابطه ای\n(SQLite / PostgreSQL)" as DB
+
+UI --> AuthMod
+UI --> ProductMod
+UI --> OrderMod
+UI --> LogisticsMod
+UI --> ReportMod
+
+AuthMod --> ORM
+ProductMod --> ORM
+OrderMod --> ORM
+LogisticsMod --> ORM
+ReportMod --> ORM
+
+ORM --> DB : تراکنش‌های پایگاه داده و کوئری‌ها
+@enduml
