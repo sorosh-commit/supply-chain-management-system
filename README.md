@@ -33,6 +33,39 @@ System interaction mapping across different administrative and operational actor
 
 ---
 
+# Enterprise Supply Chain and Warehouse Management System
+### سامانه سازمانی مدیریت انبار و زنجیره تأمین
+
+An advanced, enterprise-grade web application built with Python (Flask) and SQLAlchemy for real-time inventory tracking, multi-warehouse operations management, and secure role-based access control.
+
+---
+
+## 🚀 ویژگی‌ها و ماژول‌ها (Features and Modules)
+- **کنترل دسترسی مبتنی بر نقش (RBAC):** مدیریت امن برای مدیران سیستم، مدیران انبار، اپراتورهای لجستیک و تأمین‌کنندگان.
+- **ردیابی لحظه‌ای موجودی (Real-Time Inventory Tracking):** تعدیل خودکار موجودی به همراه لاگ‌های حسابرسی تراکنش غیرقابل تغییر.
+- **مدیریت چند انبار (Multi-Warehouse Management):** پایش ظرفیت مکانی، هشدارهای آستانه و تخصیص موجودی مبتنی بر موقعیت مکانی.
+- **مسیرهای حسابرسی پیشرفته (Advanced Audit Trails):** ثبت جامع پایگاه داده برای هرگونه جابجایی ورودی و خروجی در زنجیره تأمین.
+
+---
+
+## 🛠️ فناوری‌های استفاده‌شده (Tech Stack)
+- **بخش پشتی (Backend):** پایتون، Flask، Flask-SQLAlchemy، Flask-Migrate
+- **رابط کاربری (Frontend):** HTML5، Tailwind CSS، قالب‌های Jinja2
+- **پایگاه داده (Database):** SQLite (طرحواره رابطه‌ای سازمانی)
+- **مدل‌سازی و مستندسازی (Modeling & Documentation):** PlantUML (مستندات استاندارد مهندسی نرم‌افزار در ۱۰ فاز)
+
+---
+
+## 📊 مستندات و معماری سیستم (System Documentation & Architecture)
+این پروژه از یک چرخه عمر دقیق مهندسی نرم‌افزار در ۱۰ فاز پیروی می‌کند. تمامی نمودارها با استفاده از PlantUML مدل‌سازی شده‌اند:
+1. **فاز ۱ و ۲:** مشخصات نیازمندی‌های نرم‌افزار (SRS) و نمودارهای موارد استفاده (`/docs/use_cases.md`)
+2. **فاز ۳ و ۴:** سناریوهای موارد استفاده و نمودارهای جریان داده (سطح صفر و یک DFD) (`/docs/dfd.md`)
+3. **فاز ۵ و ۶:** نمودار ارتباط موجودیت‌ها (ERD) و نمودارهای کلاس شیءگرا (`/docs/classes.md`)
+4. **فاز ۷ و ۸:** نمودارهای توالی و فعالیت (خطوط شناور / Swimlanes) (`/docs/activities.md`)
+5. **فاز ۹ و ۱۰:** نمودارهای ماشین حالت (چرخه عمر سفارش) و نمودارهای مؤلفه/استقرار (`/docs/architecture.md`)
+
+---
+
 ## Installation and Setup
 
 **1. Clone the repository:**
