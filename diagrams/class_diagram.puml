@@ -1,0 +1,131 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class User {
+    +int id
+    +string username
+    +string password_hash
+    +string role
+    +datetime created_at
+    +login()
+    +logout()
+}
+
+class Category {
+    +int id
+    +string name
+    +string description
+    +add_sub_category()
+}
+
+class Product {
+    +int id
+    +string name
+    +string sku
+    +float purchase_price
+    +float sale_price
+    +int stock_quantity
+    +int reorder_point
+    +update_stock()
+}
+
+class Warehouse {
+    +int id
+    +string name
+    +string location
+    +float capacity
+}
+
+class Stock {
+    +int id
+    +int quantity_available
+    +get_current_stock()
+}
+
+class Supplier {
+    +int id
+    +string name
+    +string contact_info
+    +string address
+}
+
+class Customer {
+    +int id
+    +string name
+    +string phone
+    +string email
+}
+
+class PurchaseOrder {
+    +int id
+    +string po_number
+    +datetime order_date
+    +string status
+    +approve_order()
+}
+
+class CustomerOrder {
+    +int id
+    +string order_number
+    +datetime order_date
+    +float total_amount
+    +string status
+    +calculate_total()
+}
+
+class Transaction {
+    +int id
+    +string type
+    +int quantity
+    +datetime timestamp
+    +record_movement()
+}
+
+class Shipment {
+    +int id
+    +string tracking_code
+    +string status
+    +datetime dispatch_date
+    +generate_bill_of_lading()
+}
+
+class Driver {
+    +int id
+    +string full_name
+    +string license_number
+    +string phone
+}
+
+class Vehicle {
+    +int id
+    +string plate_number
+    +string model
+    +float capacity_weight
+}
+
+class Invoice {
+    +int id
+    +float total_price
+    +float tax
+    +datetime issue_date
+    +generate_invoice()
+}
+
+' Relationships
+Category "1" -- "*" Product : contains
+Supplier "1" -- "*" Product : supplies
+Warehouse "1" -- "*" Stock : has
+Product "1" -- "*" Stock : stored_in
+User "1" -- "*" Transaction : performs
+Product "1" -- "*" Transaction : involves
+Supplier "1" -- "*" PurchaseOrder : receives
+PurchaseOrder "1" -- "*" Product : includes
+Customer "1" -- "*" CustomerOrder : places
+CustomerOrder "1" -- "*" Product : contains
+CustomerOrder "1" -- "1" Invoice : generates
+CustomerOrder "1" -- "1" Shipment : triggers
+Driver "1" -- "*" Shipment : assigns
+Vehicle "1" -- "*" Shipment : carries
+
+@Sumbit
+@enduml
