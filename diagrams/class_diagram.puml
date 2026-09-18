@@ -127,5 +127,4 @@ CustomerOrder "1" -- "1" Shipment : triggers
 Driver "1" -- "*" Shipment : assigns
 Vehicle "1" -- "*" Shipment : carries
 
-@Sumbit
 @enduml
