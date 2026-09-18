@@ -1,0 +1,38 @@
+@startuml
+skinparam handwritten false
+skinparam monochrome true
+skinparam packageStyle rectangle
+
+' External Entities (بازیگران خارجی)
+actor "مدیر انبار / کاربر" as User
+actor "تأمین‌کننده" as Supplier
+actor "مشتری" as Customer
+
+' Processes (فرآیندهای اصلی سیستم)
+rectangle "سامانه مدیریت انبار و زنجیره تأمین" {
+    rectangle "1.0\nمدیریت کالا و موجودی" as P1
+    rectangle "2.0\nمدیریت خرید (PO)" as P2
+    rectangle "3.0\nمدیریت فروش (SO)" as P3
+    rectangle "4.0\nلجستیک و ارسال" as P4
+}
+
+' Data Stores (انبارهای داده / دیتابیس)
+database "D1: کالاها و انبار" as DS1
+database "D2: تأمین‌کنندگان" as DS2
+database "D3: سفارشات خرید" as DS3
+database "D4: مشتریان و فروش" as DS4
+database "D5: لجستیک و بارنامه" as DS5
+
+' Data Flows
+User --> P1 : اطلاعات کالا / تراکنش
+P1 --> DS1 : ثبت/به‌روزرسانی موجودی
+User --> P2 : ثبت سفارش خرید
+P2 --> DS2 : استعلام تأمین‌کننده
+P2 --> DS3 : ثبت اطلاعات PO
+Supplier --> P2 : تایید/رد سفارش
+Customer --> P3 : ثبت سفارش فروش
+P3 --> DS4 : ثبت سفارشات مشتری
+P3 --> DS1 : بررسی و رزرو موجودی
+P4 --> DS5 : صدور بارنامه و شیپمنت
+DS4 --> P4 : اطلاعات ارسال سفارش
+@enduml
