@@ -1,0 +1,28 @@
+@startuml
+skinparam DefaultTextAlignment center
+skinparam NodeBackgroundColor #FDFDFD
+skinparam NodeBorderColor #2C3E50
+skinparam ArrowColor #2C3E50
+
+node "لایه کاربر (Client Tier)" {
+    artifact "مرورگر وب\n(Chrome, Firefox, Edge)" as Browser
+}
+
+node "لایه سرور برنامه (Application Server Tier)" {
+    artifact "فایل‌های استاتیک و ظاهر\n(CSS / Tailwind / JS)" as StaticFiles
+    
+    component "سرور وب / WSGI\n(Gunicorn / Flask Development Server)" as WebServer {
+        [موتور پردازش پایتون / Flask\n(مدیریت مسیرها و پردازش درخواست‌ها)] as AppCore
+    }
+}
+
+node "لایه داده و پایگاه داده (Database Server Tier)" {
+    database "سیستم مدیریت پایگاه داده\n(SQLite / PostgreSQL Engine)" as DBEngine {
+        folder "جداول سامانه\n(Users, Products, Warehouses, Transactions, Orders)" as Tables
+    }
+}
+
+Browser --> WebServer : ارسال درخواست‌های HTTP / HTTPS امن
+WebServer --> StaticFiles : بارگذاری استایل‌ها و رابط کاربری
+AppCore --> DBEngine : اجرای کوئری‌های SQL و مدیریت تراکنش‌ها (ORM)
+@enduml
