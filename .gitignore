@@ -1,0 +1,17 @@
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# SQLite databases (local development data)
+*.db
+*.sqlite3
+
+# OS specific files
+.DS_Store
+Thumbs.db

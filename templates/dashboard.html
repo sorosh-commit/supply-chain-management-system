@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}داشبورد مرکزی{% endblock %}
+{% block header_title %}داشبورد مرکزی{% endblock %}
+
+{% block content %}
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex items-center">
+        <div class="p-4 bg-indigo-50 text-indigo-600 rounded-xl ml-4"><i class="fa-solid fa-box text-2xl"></i></div>
+        <div>
+            <p class="text-sm text-slate-500 font-medium">تعداد کل کالاها</p>
+            <h3 class="text-2xl font-bold text-slate-800">{{ total_products }}</h3>
+        </div>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex items-center">
+        <div class="p-4 bg-blue-50 text-blue-600 rounded-xl ml-4"><i class="fa-solid fa-warehouse text-2xl"></i></div>
+        <div>
+            <p class="text-sm text-slate-500 font-medium">تعداد انبارها</p>
+            <h3 class="text-2xl font-bold text-slate-800">{{ total_warehouses }}</h3>
+        </div>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex items-center">
+        <div class="p-4 bg-amber-50 text-amber-600 rounded-xl ml-4"><i class="fa-solid fa-truck-field text-2xl"></i></div>
+        <div>
+            <p class="text-sm text-slate-500 font-medium">تعداد تأمین‌کنندگان</p>
+            <h3 class="text-2xl font-bold text-slate-800">{{ total_suppliers }}</h3>
+        </div>
+    </div>
+</div>
+<!-- Charts Section -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+        <h3 class="text-base font-bold text-slate-800 mb-4"><i class="fa-solid fa-chart-pie text-indigo-600 ml-2"></i> نمای کلی وضعیت سامانه</h3>
+        <div class="relative h-64 flex justify-center items-center">
+            <canvas id="supplyChainChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Chart.js Script Initialization -->
+<script>
+    const ctx = document.getElementById('supplyChainChart').getContext('2d');
+    const supplyChainChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['کالاها', 'انبارها', 'تامین‌کنندگان'],
+            datasets: [{
+                data: [{{ total_products }}, {{ total_warehouses }}, {{ total_suppliers }}],
+                backgroundColor: ['#4f46e5', '#10b981', '#f59e0b'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                            family: 'Vazirmatn, Tahoma, sans-serif',
+                            size: 12
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+<!-- Quick Actions -->
+<div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+    <h3 class="text-lg font-bold text-slate-800 mb-4">دسترسی سریع</h3>
+    <a href="/products" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition">
+        مشاهده لیست کالاها <i class="fa-solid fa-arrow-left mr-2"></i>
+    </a>
+</div>
+{% endblock %}

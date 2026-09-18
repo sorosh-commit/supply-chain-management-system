@@ -1,0 +1,192 @@
+@startuml
+skinparam linetype ortho
+
+entity "User" as user {
+    + id : INT
+    --
+    username : VARCHAR
+    email : VARCHAR
+    password_hash : VARCHAR
+    role : VARCHAR
+    created_at : DATETIME
+}
+
+entity "Supplier" as supplier {
+    + id : INT
+    --
+    name : VARCHAR
+    contact_info : VARCHAR
+    address : TEXT
+    rating : FLOAT
+}
+
+entity "Category" as category {
+    + id : INT
+    --
+    name : VARCHAR
+    description : TEXT
+}
+
+entity "Product" as product {
+    + id : INT
+    --
+    name : VARCHAR
+    sku : VARCHAR
+    description : TEXT
+    price : FLOAT
+    cost_price : FLOAT
+    category_id : INT
+    supplier_id : INT
+}
+
+entity "Warehouse" as warehouse {
+    + id : INT
+    --
+    name : VARCHAR
+    location : VARCHAR
+    capacity : INT
+}
+
+entity "Stock" as stock {
+    + id : INT
+    --
+    product_id : INT
+    warehouse_id : INT
+    quantity : INT
+    min_threshold : INT
+}
+
+entity "Customer" as customer {
+    + id : INT
+    --
+    name : VARCHAR
+    phone : VARCHAR
+    email : VARCHAR
+    address : TEXT
+}
+
+entity "PurchaseOrder" as purchase_order {
+    + id : INT
+    --
+    supplier_id : INT
+    user_id : INT
+    status : VARCHAR
+    order_date : DATETIME
+    expected_delivery : DATETIME
+}
+
+entity "PurchaseOrderItem" as purchase_order_item {
+    + id : INT
+    --
+    purchase_order_id : INT
+    product_id : INT
+    quantity : INT
+    unit_price : FLOAT
+}
+
+entity "CustomerOrder" as customer_order {
+    + id : INT
+    --
+    customer_id : INT
+    user_id : INT
+    status : VARCHAR
+    total_amount : FLOAT
+    order_date : DATETIME
+}
+
+entity "CustomerOrderItem" as customer_order_item {
+    + id : INT
+    --
+    customer_order_id : INT
+    product_id : INT
+    quantity : INT
+    unit_price : FLOAT
+}
+
+entity "Driver" as driver {
+    + id : INT
+    --
+    name : VARCHAR
+    phone : VARCHAR
+    license_number : VARCHAR
+    status : VARCHAR
+}
+
+entity "Vehicle" as vehicle {
+    + id : INT
+    --
+    model_name : VARCHAR
+    plate_number : VARCHAR
+    capacity_kg : FLOAT
+    status : VARCHAR
+}
+
+entity "Route" as route {
+    + id : INT
+    --
+    origin : VARCHAR
+    destination : VARCHAR
+    estimated_hours : FLOAT
+    distance_km : FLOAT
+}
+
+entity "Shipment" as shipment {
+    + id : INT
+    --
+    customer_order_id : INT
+    vehicle_id : INT
+    driver_id : INT
+    route_id : INT
+    status : VARCHAR
+    dispatch_date : DATETIME
+    delivery_date : DATETIME
+}
+
+entity "Transaction" as transaction {
+    + id : INT
+    --
+    product_id : INT
+    warehouse_id : INT
+    user_id : INT
+    change_amount : INT
+    transaction_type : VARCHAR
+    timestamp : DATETIME
+}
+
+entity "Invoice" as invoice {
+    + id : INT
+    --
+    customer_order_id : INT
+    amount : FLOAT
+    tax : FLOAT
+    status : VARCHAR
+    issue_date : DATETIME
+}
+
+' Relationships
+category ||--o{ product : classifies
+supplier ||--o{ product : supplies
+warehouse ||--o{ stock : stores
+product ||--o{ stock : contains
+
+supplier ||--o{ purchase_order : receives
+user ||--o{ purchase_order : manages
+purchase_order ||--o{ purchase_order_item : includes
+product ||--o{ purchase_order_item : ordered_in
+
+customer ||--o{ customer_order : places
+user ||--o{ customer_order : processes
+customer_order ||--o{ customer_order_item : contains
+product ||--o{ customer_order_item : ordered_in
+
+customer_order ||--o| invoice : generates
+
+vehicle ||--o{ shipment : executes
+driver ||--o{ shipment : manages
+route ||--o{ shipment : follows
+customer_order ||--o{ shipment : fulfills
+
+user ||--o{ transaction : executes
+product ||--o{ transaction : logs
+warehouse ||--o{ transaction : records
+@enduml

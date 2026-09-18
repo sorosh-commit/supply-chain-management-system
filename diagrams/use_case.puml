@@ -1,0 +1,31 @@
+@startuml
+left to right direction
+actor "مدیر سیستم" as Admin
+actor "مدیر انبار" as Manager
+actor "اپراتور لجستیک" as Operator
+actor "تأمین‌کننده" as SupplierActor
+
+rectangle "سامانه سازمانی مدیریت انبار و زنجیره تأمین" {
+    usecase "مدیریت کاربران و سطح دسترسی" as UC1
+    usecase "مدیریت انبارها و پایش ظرفیت" as UC2
+    usecase "مدیریت کالاها و کدهای SKU" as UC3
+    usecase "ثبت و مدیریت تأمین‌کنندگان" as UC4
+    usecase "ثبت تراکنش‌های ورود و خروج" as UC5
+    usecase "مشاهده گزارشات ممیزی و گردش کالا" as UC6
+    usecase "مشاهده سفارشات و وضعیت ارسال" as UC7
+}
+
+Admin --> UC1
+Admin --> UC3
+Admin --> UC4
+Admin --> UC6
+
+Manager --> UC2
+Manager --> UC5
+Manager --> UC6
+
+Operator --> UC5
+Operator --> UC6
+
+SupplierActor --> UC7
+@enduml
